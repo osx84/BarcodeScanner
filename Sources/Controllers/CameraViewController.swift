@@ -66,7 +66,7 @@ public final class CameraViewController: UIViewController {
         captureDevice.unlockForConfiguration()
       } catch {}
 
-      flashButton.setImage(torchMode.image, for: UIControlState())
+        flashButton.setImage(torchMode.image, for: UIControl.State())
     }
   }
 
@@ -169,12 +169,12 @@ public final class CameraViewController: UIViewController {
       action: #selector(handleCameraButtonTap),
       for: .touchUpInside
     )
-
+    
     NotificationCenter.default.addObserver(
-      self,
-      selector: #selector(appWillEnterForeground),
-      name: NSNotification.Name.UIApplicationWillEnterForeground,
-      object: nil
+        self,
+        selector: #selector(appWillEnterForeground),
+        name: UIApplication.willEnterForegroundNotification,
+        object: nil
     )
   }
 
@@ -415,14 +415,14 @@ private extension CameraViewController {
       string: localizedString("BUTTON_SETTINGS"),
       attributes: [.font: UIFont.boldSystemFont(ofSize: 17), .foregroundColor: UIColor.white]
     )
-    button.setAttributedTitle(title, for: UIControlState())
+    button.setAttributedTitle(title, for: UIControl.State())
     button.sizeToFit()
     return button
   }
 
   func makeCameraButton() -> UIButton {
     let button = UIButton(type: .custom)
-    button.setImage(imageNamed("cameraRotate"), for: UIControlState())
+    button.setImage(imageNamed("cameraRotate"), for: UIControl.State())
     button.isHidden = !showsCameraButton
     return button
   }
